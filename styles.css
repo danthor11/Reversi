@@ -1,0 +1,124 @@
+:root{
+    --main-bg-color: rgb(53, 52, 52);
+    --main-btn-color: rgb(0, 0, 0);
+    --main-bg-btn-color: rgb(1, 227, 243);
+
+}
+
+html{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+*{
+    transition: all 1s;
+}
+body{
+    margin: 0 0;
+    background-color: #eee;
+}
+
+#stage td{
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(7, 136, 86);
+    text-align: center;
+    
+}
+
+#stage{
+    margin: 0 auto;
+    border: 1px solid var(--main-bg-color);
+
+}
+
+img{
+    display: block;
+    margin: auto;
+    width: 90%;
+    height: auto;
+    border-radius: 50%; 
+    background-color: rgba(170, 170, 170, 0.267);
+}
+
+.player-1 img{
+    background-color: rgb(234, 235, 232) !important;
+}
+
+.player-2 img{
+    background-color: rgb(5, 5, 5) !important;
+}
+
+/* .player-1{    
+    background-color: greenyellow !important;
+}
+
+.player-2{
+    background-color: coral !important;
+} */
+
+.playes{
+    background-color: whitesmoke !important;
+    border-radius: 2rem;
+}
+
+#score{
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(102, 102, 102, 0.664);
+    padding: 0.5rem;
+    justify-content: space-evenly;
+    border-radius: 0.25rem;
+}
+
+#score figcaption {
+    margin: auto;
+    text-align: center;
+    color: aliceblue;
+}
+
+#score img{
+    display: inline;
+    width: 2rem;
+    height: 2rem;
+    
+}
+
+.othello{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: max-content;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background-color: var(--main-bg-color);
+    border: 0.5px solid black;
+    border-radius: 0.25rem;
+}
+
+.othello #name-player {
+    align-self: center;
+    padding: 0.3rem;
+    border: 0.5px solid;
+    border-radius: 0.25rem;
+    font-size: 0.5rem;
+    background-color:var(--main-bg-btn-color);
+    color: var(--main-btn-color);
+border:none;
+}
+
+.othello #restart{
+    width:fit-content;
+    margin: 0 auto;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    font-weight:500;
+    font-size: 0.5rem;
+    border: 0.5px solid;
+    color: var(--main-btn-color);
+    background-color: var(--main-bg-btn-color);
+    border:none;
+}
+
+
