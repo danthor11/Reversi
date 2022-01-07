@@ -4,14 +4,14 @@
  * 
  */
 
-import { options } from "./setting.js";
-import { Stage } from "./stage.js";
+import { options } from "./src/setting.js";
+import { Stage } from "./src/stage.js";
 
 
-const stage = new Stage(options.mood),
-    $restartBtn = document.getElementById("restart"),
+const $restartBtn = document.getElementById("restart"),
     $settingsBtn = document.getElementById("settings");
 
+options.stage = new Stage(options.mood)
 
 $restartBtn.addEventListener("click",e => {
     stage.newGame(options.mood)

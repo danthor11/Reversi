@@ -1,3 +1,5 @@
+import { Stage } from "./stage.js";
+
 const $form = document.querySelector(".form-settings"),
     $pc = document.querySelector("[name='pc']"),
     $multiplayer = document.querySelector("[name='multiplayer']");
@@ -8,18 +10,19 @@ export let options = {
     $form,
     $pc,
     $multiplayer,
-    mood
+    mood,
+    stage
 }
 
 $form.addEventListener("submit",e=> {
     e.preventDefault()
     if(e.target.multiplayer.checked){
         mood=true
-        stage.newGame(mood)
+        options.stage.newGame(mood)
     }
     else if(e.target.pc.checked){
         mood=false
-        stage.newGame(mood)
+        options.stage.newGame(mood)
     }
     else 
         return
