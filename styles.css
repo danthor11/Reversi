@@ -272,3 +272,15 @@ body{
     padding: 0 1.5rem;
     margin: .5rem 0;
 }
+
+@media only screen and (max-width:420px) {
+    .circle{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .cell{
+        width: 2rem;
+        height: 2rem;
+        
+    }
+}
