@@ -1,10 +1,12 @@
 export const  Reversi = function(){
-   // this.newGame()
     this.board = this.createArray()
     this.initializeArray()
     this.playes= []
 }
-
+/**
+ * 
+ * @returns {Array} array 8x8
+ */
 
 Reversi.prototype.createArray = function(){
     let x = new Array(8);
@@ -15,6 +17,7 @@ Reversi.prototype.createArray = function(){
     return x;
     
 }
+
 
 Reversi.prototype.initializeArray = function(){
     
@@ -42,7 +45,12 @@ Reversi.prototype.initializeArray = function(){
 
 
 }
-
+/**
+ * 
+ * @param {number} row - position in x into array
+ * @param {number} column - position in y into array
+ * @param {number} player - player's id
+ */
 Reversi.prototype.flipToken = function(row,column,player){
     let band=true,
         k=0,
@@ -63,6 +71,7 @@ Reversi.prototype.flipToken = function(row,column,player){
     else if(column===0)
         columnLeft=false
 
+  
     if(rowUp){
         // ?                    ARRIBA
         //Verificar si celdas adyacentes son del jugador contrario
@@ -95,7 +104,7 @@ Reversi.prototype.flipToken = function(row,column,player){
                         isOpen: true,
                         player: player
                     }
-                    console.log(row-i,column)
+                    
                 }
             }
             k=0;
@@ -183,7 +192,6 @@ Reversi.prototype.flipToken = function(row,column,player){
 
     if(columnRight){
         //?                 DERECHA
-        console.log(row,column,columnRight)
         if(board[row][column+1].player===player*-1){
 
             for (let i = column+1; i < 8 && band; i++) {
@@ -376,9 +384,14 @@ Reversi.prototype.flipToken = function(row,column,player){
     
 }
 
+/**
+ * 
+ * @param {number} player players id 
+ * @returns {Array} contains all the playes
+ */
 
 Reversi.prototype.findPlays = function(player){
-   
+
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             //Busqueda de fichas del jugador
@@ -389,9 +402,17 @@ Reversi.prototype.findPlays = function(player){
         }
         
     }
+    
+    return this.playes.flat()
 
 }
-
+/**
+ * 
+ * @param {Number} mood 
+ * @param {Number} mood 
+ * @param {Number} mood 
+ * @returns {Array} the playes that can play in a cell 
+ */
 
 Reversi.prototype.canPlay = function(row, column,player){
 
@@ -427,6 +448,8 @@ Reversi.prototype.canPlay = function(row, column,player){
                 if(band){
                     if(board[i][column].player===player*-1)
                         k++
+                    else if(board[i][column].player===player)
+                        band=false
                     if(!board[i][column].isOpen){
                         mustFlip=true
                         band=false
@@ -458,6 +481,8 @@ Reversi.prototype.canPlay = function(row, column,player){
                 if(band){
                     if(board[i][column].player===player*-1)
                         k++
+                    else if(board[i][column].player===player)
+                        band=false
                     if(!board[i][column].isOpen){
                         band=false
                         mustFlip=true
@@ -487,7 +512,9 @@ Reversi.prototype.canPlay = function(row, column,player){
                 if(band){
                     if(board[row][i].player===player*-1)
                         k++
-                    if(!board[row][i].isOpen){
+                    else if(board[row][i].player===player)
+                        band=false
+                    if(!board[row][i].isOpen){    
                         band=false
                         mustFlip=true
                     }
@@ -517,6 +544,8 @@ Reversi.prototype.canPlay = function(row, column,player){
                 if(band){
                     if(board[row][i].player===player*-1)
                         k++
+                    else if(board[row][i].player===player)
+                        band=false
                     if(!board[row][i].isOpen){
                         band=false
                         mustFlip=true
@@ -541,15 +570,16 @@ Reversi.prototype.canPlay = function(row, column,player){
     
     //?             ESQUINA SUPERIOR IZQUIERDA 
     if(rowUp && columnLeft){
-        if(board[row-1][column-1].isOpen){
+        
             if(board[row-1][column-1].player===player*-1){
                 for (let i = 1; i < 7 && band; i++){
                     if(row-i<0 || column-i<0)
                         band=false
-
                     if(band){
                         if(board[row-i][column-i].player===player*-1)
                             k++
+                        else if(board[row-i][column-i].player===player)
+                            band=false
                         if(!board[row-i][column-i].isOpen){
                             band=false
                             mustFlip=true
@@ -567,14 +597,14 @@ Reversi.prototype.canPlay = function(row, column,player){
                 mustFlip=false
                 k=1
             }
-        }
+        
     }
    
     
 
     if(rowUp && columnRight){
         // ?               ESQUINA SUPERIOR DERECHA
-        if(board[row-1][column+1].isOpen){
+        
             if(board[row-1][column+1].player===player*-1){
                 for (let i = 1; i < 7 && band; i++) {   
                     if(row-i<0 || column+i>7)
@@ -582,6 +612,8 @@ Reversi.prototype.canPlay = function(row, column,player){
                     if(band){
                         if(board[row-i][column+i].player===player*-1)
                             k++
+                        else if(board[row-i][column+i].player===player)
+                            band=false
                         if(!board[row-i][column+i].isOpen){
                             band=false
                             mustFlip=true
@@ -600,14 +632,14 @@ Reversi.prototype.canPlay = function(row, column,player){
                 mustFlip=false
                 k=1
             }
-        }
+        
     }
     
     
 
     //?                 ESQUINA INFERIOR IZQUIERDA
     if(rowDown && columnLeft){
-        if(board[row+1][column-1].isOpen){
+        
             if(board[row+1][column-1].player===player*-1){
                 for (let i = 1; i < 7 && band; i++) {      
                     if(row+i>7 || column-i<0)
@@ -616,6 +648,8 @@ Reversi.prototype.canPlay = function(row, column,player){
                     if(band){
                         if(board[row+i][column-i].player===player*-1)
                             k++
+                        else if(board[row+i][column-i].player===player)
+                            band=false
                         if(!board[row+i][column-i].isOpen){
                             band=false
                             mustFlip=true
@@ -634,13 +668,13 @@ Reversi.prototype.canPlay = function(row, column,player){
                 mustFlip=false
                 k=1
             }    
-        }
+        
     }
     
     
     //?                 ESQUINA INFERIOR DERECHA
     if(rowDown && columnRight){
-        if(board[row+1][column+1].isOpen){
+        
             if(board[row+1][column+1].player===player*-1){
                 for (let i = 1; i < 7 && band; i++) {   
 
@@ -650,6 +684,8 @@ Reversi.prototype.canPlay = function(row, column,player){
                     if(band){
                         if(board[row+i][column+i].player===player*-1)
                             k++
+                        else if(board[row+i][column+i].player===player)
+                            band=false
                         if(!board[row+i][column+i].isOpen){
                             band=false
                             mustFlip=true
@@ -666,15 +702,19 @@ Reversi.prototype.canPlay = function(row, column,player){
                 }
               
             }
-        }
+        
     }
     
-    
 
+    
+    
     return playes
 }
 
-
+/**
+ * 
+ *  @returns {Object} score 
+ */
 
 Reversi.prototype.countToken = function(){
     let player1=0,
@@ -693,6 +733,11 @@ Reversi.prototype.countToken = function(){
         player2
     }
 }
+
+/**
+ * 
+ * @returns {Number} the cells opened in the Array
+ */
 
 Reversi.prototype.countCellAvailable = function(){
     let cellOpened=0;

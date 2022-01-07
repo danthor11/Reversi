@@ -2,7 +2,7 @@
     --main-bg-color: rgb(53, 52, 52);
     --main-btn-color: rgb(0, 0, 0);
     --main-bg-btn-color: rgb(1, 227, 243);
-
+    --color: linear-gradient(#251 0%, #eee 100%);
 }
 
 html{
@@ -11,20 +11,23 @@ html{
 }
 
 *{
-    transition: all 1s;
+    transition: all 0.25s ease-in-out;
 }
 body{
     margin: 0 0;
-    background-color: #eee;
+    background-color: rgb(112, 112, 112);
 }
 
-#stage td{
-    width: 2rem;
-    height: 2rem;
+
+/* ? Stage of game */
+.cell{
+    width: 3rem;
+    height: 3rem;
     background-color: rgb(7, 136, 86);
     text-align: center;
-    
 }
+
+
 
 #stage{
     margin: 0 auto;
@@ -32,35 +35,56 @@ body{
 
 }
 
-img{
-    display: block;
+.circle{
+    position: relative;
     margin: auto;
-    width: 90%;
-    height: auto;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%; 
     background-color: rgba(170, 170, 170, 0.267);
+    z-index: 0;
+    border: 1px solid black;
+    opacity: 0;
 }
 
-.player-1 img{
+
+
+.last-playes{
+    /* margin: 1rem;*/
+    width: 0.7rem;
+    height: 0.7rem; 
+    position: absolute;
+    top: 50%;
+    border-radius: 50%; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(253, 32, 32, 0.719);
+    outline: 0.5px solid rgba(0, 0, 0, 0.247);
+    z-index: 100;
+    opacity: 0;
+    
+}
+
+.active{
+    opacity: 1 !important;
+}
+
+.player-1{
     background-color: rgb(234, 235, 232) !important;
 }
 
-.player-2 img{
+.player-2{
     background-color: rgb(5, 5, 5) !important;
 }
 
-/* .player-1{    
-    background-color: greenyellow !important;
-}
-
-.player-2{
-    background-color: coral !important;
-} */
 
 .playes{
     background-color: whitesmoke !important;
     border-radius: 2rem;
 }
+
+
+/*  ? Score */
 
 #score{
     display: flex;
@@ -71,18 +95,28 @@ img{
     border-radius: 0.25rem;
 }
 
+.score-container{
+    height: 3rem;
+    width: 3rem;
+    
+}
+
 #score figcaption {
-    margin: auto;
+    margin: 0.1rem 0 auto;
     text-align: center;
     color: aliceblue;
 }
 
-#score img{
-    display: inline;
+#score .score-container .circle{
     width: 2rem;
     height: 2rem;
+    margin: auto;
+    border-radius: 50%; 
+    background-color: rgba(170, 170, 170, 0.267);
     
 }
+
+
 
 .othello{
     display: flex;
@@ -105,10 +139,10 @@ img{
     font-size: 0.5rem;
     background-color:var(--main-bg-btn-color);
     color: var(--main-btn-color);
-border:none;
+    border:none;
 }
 
-.othello #restart{
+#restart , #settings {
     width:fit-content;
     margin: 0 auto;
     padding: 0.3rem;
@@ -121,4 +155,119 @@ border:none;
     border:none;
 }
 
+#restart:hover , #settings:hover {
+    color: rgba(0, 0, 0, 0.973);
+    background-color: rgba(9, 224, 240, 0.808); 
+}
 
+#restart:active , #settings:active {
+    color: rgba(70, 69, 69, 0.918);
+    background-color: rgba(136, 233, 240, 0.966); 
+}
+
+#buttons{
+    display: flex;
+    margin: 0.25rem auto;
+    width: 80%;
+}
+
+.message-container{
+    background-color: rgba(63, 63, 63, 0.137);
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -100;
+    opacity: 0;
+}
+
+
+
+#message{
+    background-color: rgb(253, 252, 252); 
+    width: 350px;
+    height: 8rem;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem ;
+    color: rgb(48, 49, 49);
+    font-weight: 400;
+    font-size: 1.25rem;
+    top: calc(50% - 4rem);
+    left: calc(50% - 150px);
+    position: absolute;
+    background: linear-gradient(#eee 0% ,
+        rgb(187, 185, 185) 100%
+    );
+    z-index: inherit;
+    opacity: inherit;
+}
+#message span{
+    text-align: center;
+}
+
+
+.form-settings{
+    z-index: inherit;
+    opacity: inherit;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 1rem;
+    background-color: #eee;
+    border-radius: 0.5rem;
+    box-shadow: 1px 0px 20px solid #000;
+    position: absolute;
+    top: calc(50% - 4rem);
+    left: calc(50% - 100px);
+}
+.form-settings h2{
+    padding: 0.5rem;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.form-settings hr{
+    size: 2px;
+    color: black;
+    margin-bottom: 0;
+    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.555);
+}
+
+.form-settings div{
+    text-align: right;
+    margin: 0.5rem 0;
+}
+.form-settings input{
+    padding: 0.5rem 1rem;
+    margin: 0.5rem auto;
+    width: max-content;
+    background:linear-gradient(rgb(9, 240, 240) 0%,
+        rgb(138, 195, 248) 100%
+    );
+    border: 0.1px solid rgb(121, 118, 118);
+    color: var(--main-btn-color);
+    border-radius: 0.25rem;
+    
+}
+
+.form-settings input:hover{ 
+    background:linear-gradient(rgb(76, 245, 245) 0%,
+        rgb(170, 208, 243) 100%
+    );
+    
+}
+
+.header-container{
+    background-color: var(--main-bg-color);
+    padding: 0.25rem ;
+    color: rgb(214, 214, 214);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.header-container h1{
+    padding: 0 1.5rem;
+    margin: .5rem 0;
+}

@@ -4,21 +4,55 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Reversi</title>
+    <link rel="shortcut icon" href="./assets/icon.png">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
 </head>
 <body>
+    <div class="header-container">
+        <h1>Reversi</h1>
+    </div>
+    
+    <div class="message-container">
+        <form class="form-settings">
+            <h2>Configuración</h2>
+            <hr size="2px"width="100%"/>
+            <div>
+                <label for="multiplayer">Jugador vs Jugador</label>
+                <input type="checkbox" name="multiplayer">
+            </div>
+            <div>
+                <label for="pc">Jugador vs Pc</label>
+                <input type="checkbox" name="pc"> 
+            </div>
+            <input type="submit" value="Jugar">
+        </form>
+    </div>
 
-    <h1>Reversi</h1>
+
+    <div class="message-container">
+        <div id="message"><span></span></div>
+    </div>
 
     <div class="othello">
-        <div id="score"></div>
-        <button id="restart" >Nuevo Juego</button>
+        <div id="score">
+            <div class="score-container">
+                <div class='circle player-1 active'></div>
+                <figcaption></figcaption>
+            </div>  
+            <div  class="score-container">
+                <div class='circle player-2 active'></div>
+                <figcaption></figcaption>
+            </div>
+        </div>
+        <div id="buttons">
+            <button id="restart" >Nuevo Juego</button>
+            <button id="settings">Configurar</button>
+        </div>
         <table id="stage"></table>
         <div id="name-player"></div>
     </div>
     
-    <div id="message"></div>
     <script src='index.js' type="module"></script>
 
     
