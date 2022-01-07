@@ -91,7 +91,10 @@ Stage.prototype.render = function (){
     // Turno del Jugador
     document.getElementById("name-player").textContent=`
         Turno del Jugador: ${this.player===1 ? "1" : "2"} 
-    ` 
+    `  
+    document.getElementById("name-player").classList.add(`player-${this.player===1 ? "1" : "2"}`)
+    document.getElementById("name-player").classList.remove(`player-${this.player===1 ? "2" : "1"}`)
+
     //Puntuacion
     document.querySelectorAll(".score-container figcaption")[0].textContent=score.player1
     document.querySelectorAll(".score-container figcaption")[1].textContent=score.player2
